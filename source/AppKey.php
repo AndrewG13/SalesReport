@@ -1,13 +1,17 @@
 <?php
-
+/*
+** AppKey.php
+**    Actions for functionality with application CLI
+*/
 class AppKey {
 
   private $name;
-  public  $keys;
+  public  $keys;             // keys available for Action
   private $desc;
   private $redirectToAction; // used to startup the process this key is affliated with (Ex: go to Reports)
-  public $hide;
+  public $hide;              // flag for hidden Actions
 
+  // constructor takes associative array
   public function __construct($arr) {
     $this->name = $arr["N"];
     $this->keys = $arr["I"];
@@ -16,6 +20,7 @@ class AppKey {
     $this->hide = $arr["H"];
   }
 
+  // basic dump of information
   public function printInfo() {
     echo "\nAction Name: {$this->name}";
     echo "\nDescription: {$this->desc}";
@@ -24,7 +29,6 @@ class AppKey {
       echo $key . " ";
     }
     echo "]\n";
-
   }
 
 }

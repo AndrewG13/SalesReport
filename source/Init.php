@@ -1,7 +1,8 @@
 <?php
 /*
-** Startup Routines for initializing settings, variables, etc.
-**
+** Init.php
+**    Startup Routines for initializing settings, variables, etc.
+**    Contains global variables and routine functions
 */
 
 require("source/Record.php");
@@ -63,7 +64,7 @@ new AppKey(array(
 //echo "Amount of Action Keys: " . count($_Keys);
 function _ListKeys() {
   global $_Keys;
-  echo "Reached List Keys";
+  
   for($i = 0; $i < count($_Keys); $i++) {
     if (!$_Keys[$i]->hide) {
       $_Keys[$i]->printInfo();

@@ -55,7 +55,7 @@ function readKey($key) {
       }
     }
   }
-  echo "Invalid Action Key: [{$key}]";
+  echo "\nInvalid Action Key: [{$key}]";
   return true;
 }
 
@@ -69,14 +69,15 @@ function processKey($keyIndex) {
   switch ($keyIndex) {
     // Reports
     case (1) - 1 :
-
+      echo "\n<| Reports |>";
       break;
     // Input
     case (2) - 1 :
-
+      echo "\n<| Input |>";
       break;
     // List Action Keys
     case (3) - 1 :
+      echo "\n<| List of Action Key |>";
       _ListKeys();
       break;
     // Username
@@ -97,7 +98,7 @@ function processKey($keyIndex) {
       break;
     // Help
     case (5) - 1 :
-      echo "\nApplication Guide";
+      echo "\n<| Application Guide |>";
       // helpfull stuff
       break;
     // Exit
@@ -106,7 +107,7 @@ function processKey($keyIndex) {
       break;
     // Tell a Joke
     case (7) - 1 :
-
+      echo "\n<| Joke Library |>";
       break;
   }
   //$_Keys[$keyIndex]->printInfo();
@@ -118,7 +119,7 @@ function processKey($keyIndex) {
 function terminate() {
   global $_Username;
   // display shutdown message
-  echo "\n\n(') Application Shutting Down.";
+  echo "\n(') Application Shutting Down.";
   // greet if username is set
   if (usernameSet()) {
     echo "\nGoodbye {$_Username}.";
