@@ -64,7 +64,7 @@ new AppKey(array(
 //echo "Amount of Action Keys: " . count($_Keys);
 function _ListKeys() {
   global $_Keys;
-  
+
   for($i = 0; $i < count($_Keys); $i++) {
     if (!$_Keys[$i]->hide) {
       $_Keys[$i]->printInfo();
@@ -72,9 +72,16 @@ function _ListKeys() {
   }
 }
 
-function usernameSet() {
+function _UsernameSet() {
   global $_Username;
   return $_Username != NoUsername;
+}
+
+function _DisplayGuide() {
+  echo "\n<| Reports |>\n";
+  echo "\n";
+  echo "\n<| Input Data |>\n";
+  echo "";
 }
 
 

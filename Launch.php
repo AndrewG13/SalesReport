@@ -7,7 +7,7 @@ require("source/Init.php");
 // setting to false will comense the termination of the app.
 $systemRunning = true;
 
-
+//echo "Today is: " . date("m-j-Y");
 
 launchApp();
 
@@ -121,7 +121,7 @@ function terminate() {
   // display shutdown message
   echo "\n(') Application Shutting Down.";
   // greet if username is set
-  if (usernameSet()) {
+  if (_UsernameSet()) {
     echo "Goodbye {$_Username}.";
   }
 
