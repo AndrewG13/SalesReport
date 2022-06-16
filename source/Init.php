@@ -9,6 +9,10 @@ require("source/AppKey.php");
 //require("source/Record.php");
 //require("source/Record.php");
 
+define("NoUsername", "UNSPECIFIED");
+$_Username = NoUsername;
+$_Prompt = ">";
+$_DebugMode = false;
 
 
 // Create keys
@@ -27,7 +31,7 @@ new AppKey(array(
   "H"=>false)),
 new AppKey(array(
   "N"=>"List Action Keys",
-  "I"=>array("3","keys","k"),
+  "I"=>array("3","keys","k","list","l"),
   "D"=>"Display List of Action Keys.",
   "R"=>"_",
   "H"=>false)),
@@ -65,6 +69,11 @@ function _ListKeys() {
       $_Keys[$i]->printInfo();
     }
   }
+}
+
+function usernameSet() {
+  global $_Username;
+  return $_Username != NoUsername;
 }
 
 

@@ -3,37 +3,43 @@
 require("source/Init.php");
 //require("source/AppKey.php");
 
+// flag to determine if the application is running.
+// setting to false will comense the termination of the app.
+$systemRunning = true;
 
-
-$prompt = ">";
-$debugMode = false;
 
 
 launchApp();
 
 function launchApp() {
-  global $prompt;
-  global $debugMode;
+  global $_Prompt;
+  global $_DebugMode;
+  global $systemRunning;
 
   // Initialize startup greeting
   greeting();
   // Navigate to user selected operation
-  promptActionKey();
+  while ($systemRunning) {
+    $systemRunning = promptActionKey();
+  }
+  // Close the application
+  terminate();
+
 }
 
 function greeting() {
-  echo "\nSales Application Initialized\n";
+  echo "\n(') Sales Application Initialized\n";
   echo "Enter \"keys\" for list of keys, or \"help\" for application guide.";
 }
 
 function promptActionKey() {
-  global $prompt;
+  global $_Prompt;
 
-  echo "\nEnter Action Key:\n";
-  $input = readline($prompt);
-
-  readKey($input);
-
+  // read action key
+  echo "\n\nEnter Action Key:\n";
+  $input = readline($_Prompt);
+  // read key and determine if system should continue
+  return readKey($input);
 }
 
 // read & validate the inputted action key
@@ -45,18 +51,20 @@ function readKey($key) {
     foreach($_Keys[$i]->keys as $ActionKey) {
       if ($key == $ActionKey) {
         //$_Keys[$i]->printInfo();
-        processKey($i);
-        return true;
+        return processKey($i);
       }
     }
   }
-  echo "Invalid Action Key: {$key}.";
-  return false;
+  echo "Invalid Action Key: [{$key}]";
+  return true;
 }
 
 // handle the validated action key
 function processKey($keyIndex) {
   global $_Keys;
+  global $_Username;
+  global $NoUsername;
+  global $_Prompt;
 
   switch ($keyIndex) {
     // Reports
@@ -73,15 +81,28 @@ function processKey($keyIndex) {
       break;
     // Username
     case (4) - 1 :
+      // read in name
+      echo "\nEnter Your name:\n";
+      $input = readline($_Prompt);
+      $input = trim($input);
 
+      // Set or Clear name
+      if ($input == "") {
+        $_Username = NoUsername;
+        echo "\nUsername Cleared.";
+      } else {
+        $_Username = $input;
+        echo "\nUsername Updated, Greetings {$_Username}";
+      }
       break;
     // Help
     case (5) - 1 :
-
+      echo "\nApplication Guide";
+      // helpfull stuff
       break;
     // Exit
     case (6) - 1 :
-
+      return false;
       break;
     // Tell a Joke
     case (7) - 1 :
@@ -89,6 +110,19 @@ function processKey($keyIndex) {
       break;
   }
   //$_Keys[$keyIndex]->printInfo();
+
+  // keep running the system
+  return true;
+}
+
+function terminate() {
+  global $_Username;
+  // display shutdown message
+  echo "\n\n(') Application Shutting Down.";
+  // greet if username is set
+  if (usernameSet()) {
+    echo "\nGoodbye {$_Username}.";
+  }
 
 }
 
