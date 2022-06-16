@@ -45,6 +45,8 @@ function promptActionKey() {
 // read & validate the inputted action key
 function readKey($key) {
   global $_Keys;
+  $key = trim($key);
+
   // iterate through each available action
   for($i = 0; $i < count($_Keys); $i++) {
     // compare to each key variation

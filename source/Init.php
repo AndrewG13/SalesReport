@@ -14,6 +14,7 @@ define("NoUsername", "UNSPECIFIED");
 $_Username = NoUsername;
 $_Prompt = ">";
 $_DebugMode = false;
+$_Organizations;
 
 
 // Create keys
@@ -50,7 +51,7 @@ new AppKey(array(
   "H"=>false)),
 new AppKey(array(
   "N"=>"Exit",
-  "I"=>array("6","exit","e"),
+  "I"=>array("6","exit","e", "quit", "q"),
   "D"=>"Terminate the Application CLI.",
   "R"=>"_",
   "H"=>false)),
