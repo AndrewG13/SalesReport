@@ -122,11 +122,22 @@ function terminate() {
   echo "\n(') Application Shutting Down.";
   // greet if username is set
   if (usernameSet()) {
-    echo "\nGoodbye {$_Username}.";
+    echo "Goodbye {$_Username}.";
   }
 
 }
 
+/*
+** Notes:
+*/
+
 // functions of Reports:
 // create a new report, view existing report, export report to file, delete report
+
+// Reports will involve file reading (read reports within /Reports)
+// Input will involve file writing   (write reports either directly in CLI or manual file in /InputData)
+// https://www.afterhoursprogramming.com/tutorial/php/read-and-write-to-file/
+// https://www.w3schools.com/PHP/php_file_open.asp
+// https://www.w3schools.com/PHP/php_file_create.asp
+
  ?>

@@ -8,7 +8,15 @@
 //echo "Record file";
 
   class Record {
-    //private
+
+    static $quantity = 0;
+
+
+    private $date;
+    private $profits;
+    private $notes;
+    
+
   }
 
  ?>
