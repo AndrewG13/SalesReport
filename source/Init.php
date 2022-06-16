@@ -14,7 +14,7 @@ define("NoUsername", "UNSPECIFIED");
 $_Username = NoUsername;
 $_Prompt = ">";
 $_DebugMode = false;
-$_Organizations;
+$_Organizations = array();
 
 
 // Create keys
@@ -57,8 +57,8 @@ new AppKey(array(
   "H"=>false)),
 new AppKey(array(
   "N"=>"Tell a Joke",
-  "I"=>array("joke"),
-  "D"=>"Receive a Joke or Offer One for Judgement. User Feelings May Be Negatively Impacted.",
+  "I"=>array("ask"),
+  "D"=>"Offer a Statment for Judgement. User Feelings May Be Negatively Impacted.",
   "R"=>"_",
   "H"=>true)));
 

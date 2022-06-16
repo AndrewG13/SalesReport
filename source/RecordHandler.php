@@ -2,7 +2,8 @@
 
 class RecordHandler {
 
-  
+  public $rootDir;
+
 }
 
  ?>

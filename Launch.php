@@ -1,6 +1,7 @@
 <?php
 
 require("source/Init.php");
+require("source/Quips.php");
 //require("source/AppKey.php");
 
 // flag to determine if the application is running.
@@ -107,9 +108,12 @@ function processKey($keyIndex) {
     case (6) - 1 :
       return false;
       break;
-    // Tell a Joke
+    // Ask the System
     case (7) - 1 :
-      echo "\n<| Joke Library |>";
+      echo "\n<| Ask the System |>";
+      echo "\nEnter a Question:\n";
+      $input = readline($_Prompt);
+      echo Quips::sass();
       break;
   }
   //$_Keys[$keyIndex]->printInfo();
@@ -124,7 +128,7 @@ function terminate() {
   echo "\n(') Application Shutting Down.";
   // greet if username is set
   if (_UsernameSet()) {
-    echo "Goodbye {$_Username}.";
+    echo " Goodbye {$_Username}.";
   }
 
 }
