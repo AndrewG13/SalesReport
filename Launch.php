@@ -2,6 +2,8 @@
 
 require("source/Init.php");
 require("source/Quips.php");
+//require("source/RecordReader.php");
+//require("source/RecordWriter.php");
 //require("source/AppKey.php");
 
 // flag to determine if the application is running.
@@ -9,6 +11,7 @@ require("source/Quips.php");
 $systemRunning = true;
 
 //echo "Today is: " . date("m-j-Y");
+//echo "Time is " . gettype(date('h:ia'));
 
 launchApp();
 
@@ -29,7 +32,7 @@ function launchApp() {
 }
 
 function greeting() {
-  echo "\n(') Sales Application Initialized\n";
+  echo "\n\n(') Sales Application Initialized\n";
   echo "Enter \"keys\" for list of keys, or \"help\" for application guide.";
 }
 
@@ -58,7 +61,7 @@ function readKey($key) {
       }
     }
   }
-  echo "\nInvalid Action Key: [{$key}]";
+  echo "\n<!> Invalid Action Key <!> [{$key}]";
   return true;
 }
 
@@ -68,19 +71,27 @@ function processKey($keyIndex) {
   global $_Username;
   global $NoUsername;
   global $_Prompt;
+  global $_Organizations;
 
   switch ($keyIndex) {
     // Reports
     case (1) - 1 :
       echo "\n<| Reports |>";
+      $orgName = "Wendy's";
+      $year = "ALL";
+      RecordReader::read($_Organizations[$orgName], $year);
+
       break;
     // Input
     case (2) - 1 :
       echo "\n<| Input |>";
+      $orgName = "Wendy's";
+      RecordWriter::write($_Organizations[$orgName]);
+
       break;
     // List Action Keys
     case (3) - 1 :
-      echo "\n<| List of Action Key |>";
+      echo "\n<| List of Action Keys |>";
       _ListKeys();
       break;
     // Username
@@ -130,7 +141,7 @@ function terminate() {
   if (_UsernameSet()) {
     echo " Goodbye {$_Username}.";
   }
-
+  echo "\n\n";
 }
 
 /*

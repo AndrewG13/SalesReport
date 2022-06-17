@@ -22,13 +22,14 @@ class AppKey {
 
   // basic dump of information
   public function printInfo() {
-    echo "\nAction Name: {$this->name}";
-    echo "\nDescription: {$this->desc}";
-    echo "\nKeys: [ ";
+    echo "\nAction Name: {$this->name}, Keys: [";
+
     foreach ($this->keys as $key) {
       echo $key . " ";
     }
-    echo "]\n";
+    echo "]";
+
+    echo "\nDescription: {$this->desc}\n";
   }
 
 }

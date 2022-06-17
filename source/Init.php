@@ -5,10 +5,12 @@
 **    Contains global variables and routine functions
 */
 
-require("source/Record.php");
-require("source/AppKey.php");
-//require("source/Record.php");
-//require("source/Record.php");
+require("Record.php");
+require("AppKey.php");
+require("Organization.php");
+require("RecordHandler.php");
+require("RecordReader.php");
+require("RecordWriter.php");
 
 define("NoUsername", "UNSPECIFIED");
 $_Username = NoUsername;
@@ -16,6 +18,11 @@ $_Prompt = ">";
 $_DebugMode = false;
 $_Organizations = array();
 
+// sample organizations
+$org1 = new Organization("Wendy's", "001");
+$org2 = new Organization("Burger King");
+$_Organizations[$org1->orgName] = $org1;
+$_Organizations[$org2->orgName] = $org2;
 
 // Create keys
 $_Keys = array(
