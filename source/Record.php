@@ -12,7 +12,7 @@
     static $lifetimeRecords = 0;
     static $notesCharLimit = 50;
 
-    private $date;
+    public $date;
     private $year;
     private $profits;
     private $deductions;
@@ -33,7 +33,7 @@
     }
 
     public function printInfo() {
-      echo "\nDate: {$this->date}, Author: {$this->auther}\n";
+      echo "\nDate: {$this->date}, Author: {$this->author}\n";
       echo "Profits: $" . number_format($this->profits, 2) . ", " .
            "Deductions: $" . number_format($this->deductions, 2) . ", " .
            "YTD Net: $" . number_format($this->ytdNetEarnings, 2) . "\n";

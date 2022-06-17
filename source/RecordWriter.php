@@ -12,6 +12,8 @@ class RecordWriter extends RecordHandler {
   // Note: Currently, there is no input mismatch handling
   public static function write($org) {
     global $_Prompt;
+    global $_Username;
+    global $NoUsername;
     // will be used to handle user input
     $input;
 
@@ -21,23 +23,34 @@ class RecordWriter extends RecordHandler {
     // handle blank option for today's date
     $rDate = ($input == "") ? date("m-j-Y") : $input;
 
-    echo "\n\nType in Daily Profits:\n";
+    // check if duplicate record before continuing
+    if ($org->recordExists($rDate)) {
+      echo "\n<!> Existing Record Found for {$rDate} <!>\n";
+      echo "Overwrite Record Data?\n";
+      $input = trim(readline($_Prompt));
+      if ($input == "no" || $input == "n") {
+        echo "\n\nProcess Aborted\n";
+        return;
+      }
+    }
+
+    echo "\nType in Daily Profits:\n";
     $input = trim(readline($_Prompt . "$"));
     $rProfits = (float)$input;
 
-    echo "\n\nType in Deductions, or Skip if None:\n";
+    echo "\nType in Deductions, or Skip if None:\n";
     $input = trim(readline($_Prompt . "$"));
     $rDeduct = ($input == "") ? 0.00 : (float)$input;
 
     $rNotes;
     $notesSize = 100;
-    while (length($rNotes) > 50) {
-      echo "\n\nType in Notes, if Any:\n";
+    while ($notesSize > 50) {
+      echo "\nType in Notes, if Any:\n";
       echo "(50 Char Limit)\n";
       $input = trim(readline($_Prompt));
-      $notesSize = length($input);
+      $notesSize = strlen($input);
       if ($notesSize > 50) {
-        echo "\n\n<!> Notes Size Exceeds 50 Chars <!>";
+        echo "\n<!> Notes Size Exceeds 50 Chars <!>";
       }
     }
     $rNotes = ($input == "") ? "None." : $input;

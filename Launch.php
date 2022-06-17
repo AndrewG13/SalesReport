@@ -61,7 +61,10 @@ function readKey($key) {
       }
     }
   }
-  echo "\n<!> Invalid Action Key <!> [{$key}]";
+  echo "\n<!> Invalid Action Key [{$key}] <!>";
+  if ($key == "gullible" || $key == "Gullible") {
+    echo "\nLOL!";
+  }
   return true;
 }
 

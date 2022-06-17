@@ -26,7 +26,7 @@ class RecordReader extends RecordHandler {
   private static function readAll($org) {
     global $_Organizations;
 
-    $_Organizations[$org->name]->displayAllRecords();
+    $_Organizations[$org->orgName]->displayAllRecords();
     echo "\nEnd of File";
   }
 

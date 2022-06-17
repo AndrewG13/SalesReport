@@ -21,7 +21,7 @@ class Organization {
     $this->orgName = $newOName;
     $this->orgID = $newOID;
     $this->dateCreated = date("m-j-Y"); // today's date
-    $this->recordList = array();
+    $this->recordsList = array();
     $this->YTDMap = array();
 
     static::$lifetimeOrgs++;
@@ -33,12 +33,18 @@ class Organization {
     // future plan, detect duplicate records based on date.
     // if dup, replace and log replacement message,
     // if no dup, add like normal.
-    $recordList[] = $newRecord;
+    //if ($recordList)
+    $transDate = $newRecord->date;
+    $this->recordsList[$transDate] = $newRecord;
+  }
+
+  public function recordExists($date) {
+    return array_key_exists($date, $this->recordsList);
   }
 
   public function updateYTD($year, $profits, $deductions) {
     // Check if Year has logged information (if it exists)
-    if ($this->YTDMap[$year] != null) {
+    if (array_key_exists($year, $this->YTDMap)) {
       // add to existing year's YTD
       $this->YTDMap[$year] += $profits;
       $this->YTDMap[$year] -= $deductions;
@@ -58,10 +64,11 @@ class Organization {
   }
 
   public function displayAllRecords() {
-    echo "---";
+    echo "\n---";
+
     foreach($this->recordsList as $record) {
       $record->printInfo();
-      echo "---\n";
+      echo "---";
     }
   }
 
