@@ -27,11 +27,13 @@ class RecordWriter extends RecordHandler {
     if ($org->recordExists($rDate)) {
       echo "\n<!> Existing Record Found for {$rDate} <!>\n";
       echo "Overwrite Record Data?\n";
+
       $input = trim(readline($_Prompt));
       if ($input == "no" || $input == "n") {
         echo "\n\nProcess Aborted\n";
         return;
       }
+      // add logic here to remove previous Profits/Ded from YTD
     }
 
     echo "\nType in Daily Profits:\n";

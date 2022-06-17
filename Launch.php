@@ -62,6 +62,7 @@ function readKey($key) {
     }
   }
   echo "\n<!> Invalid Action Key [{$key}] <!>";
+
   if ($key == "gullible" || $key == "Gullible") {
     echo "\nLOL!";
   }
@@ -80,6 +81,11 @@ function processKey($keyIndex) {
     // Reports
     case (1) - 1 :
       echo "\n<| Reports |>";
+      // add logic to:
+      // enter Organization name (if not found, abort),
+      // choose to display either year or ALL,
+      // show appropriate reports.
+
       $orgName = "Wendy's";
       $year = "ALL";
       RecordReader::read($_Organizations[$orgName], $year);
@@ -88,6 +94,10 @@ function processKey($keyIndex) {
     // Input
     case (2) - 1 :
       echo "\n<| Input |>";
+      // add logic to:
+      // enter Organization name (if not found, prompt to create),
+      // go through input process.
+
       $orgName = "Wendy's";
       RecordWriter::write($_Organizations[$orgName]);
 
